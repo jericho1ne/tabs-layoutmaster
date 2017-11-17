@@ -1,0 +1,4 @@
+$: -1070675952
+BuildCommand: build.sh
+RunCommand: run.sh
+Product: build/Release-iphoneos/TabsLayoutMaster.app/TabsLayoutMaster

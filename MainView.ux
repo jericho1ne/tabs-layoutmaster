@@ -1,0 +1,132 @@
+<App Background="#eee">
+	<Font ux:Global="RobotoMedium" File="Roboto-Medium.ttf" />
+	<Font ux:Global="MontserratLight" File="Montserrat-UltraLight.otf" />
+	<Font ux:Global="MontserratRegular" File="Montserrat-Light.otf" />
+	<Font ux:Global="MontserratBold" File="Montserrat-Regular.otf" />
+
+	<!-- Create reusable custom header text for each page -->
+	<Text ux:Class="H1Text" FontSize="19" 
+		Font="MontserratRegular" TextColor="#999" 
+		TextWrapping="Wrap" TextAlignment="Left" Alignment="TopLeft"
+		Margin="0,10,0,10"
+	/>
+	<Text ux:Class="ParagraphText" 
+		Font="MontserratLight"
+		FontSize="12" TextColor="#000" 
+		TextWrapping="Wrap" TextAlignment="Left" Alignment="TopLeft"
+		Margin="0,10"
+		LineSpacing="8"
+	/>
+
+	<Panel ux:Class="Tab" ClipToBounds="false" Margin="0,0,0,4" Background="#fafafa">
+		<string ux:Property="Text" />
+		<Text Value="{ReadProperty Text}" Color="#84C2D6" Font="RobotoMedium" Alignment="Center" />
+	</Panel>
+
+	<Rectangle ux:Name="indicator" Color="#FF9A9A"
+		LayoutMaster="page1Tab" Alignment="Bottom" Height="5" 
+	>
+		<LayoutAnimation>
+			<Move RelativeTo="WorldPositionChange" X="1" Duration="0.25" Easing="BackIn"/>
+		</LayoutAnimation>
+	</Rectangle>
+
+	
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Grid Dock="Top" ColumnCount="3" Height="40" Background="#b7e0ed">
+			<Panel ux:Name="page1Tab">
+				<Tab Text="List">
+					<Clicked>
+						<Set navigation.Active="page1" />
+					</Clicked>
+				</Tab>
+			</Panel>
+			<Panel ux:Name="page2Tab">
+				<Tab Text="Map">
+					<Clicked>
+						<Set navigation.Active="page2" />
+					</Clicked>
+				</Tab>
+			</Panel>
+			<Panel ux:Name="page3Tab">
+				<Tab Text="About">
+					<Clicked>
+						<Set navigation.Active="page3" />
+					</Clicked>
+				</Tab>
+			</Panel>
+		</Grid>
+
+		<PageControl ux:Name="navigation">
+
+			<!-- List View -->
+			<Page ux:Name="page1" Background="#eee" Padding="20,20">
+				<WhileActive Threshold="0.5">
+					<Set indicator.LayoutMaster="page1Tab" />
+				</WhileActive>
+				
+				<StackPanel Alignment="TopLeft" Height="80" Opacity="1">
+					<H1Text>Welcome to super basic tabbed Fuse app.  This is what the `H1Text` class looks like.</H1Text>
+					<ParagraphText>
+						This is the first tab.  And this text is styled by the `ParagraphText` class. Make sure you place the header and paragraph text inside a `StackPanel`, otherwise you get weird overlaps.
+					</ParagraphText>
+					
+					<ParagraphText>
+						Jowl doner ad, shank turkey drumstick pork loin pork belly nisi prosciutto irure chuck cupidatat. Bacon in chicken, do officia anim qui voluptate venison pancetta pork brisket.
+					</ParagraphText>
+				</StackPanel>
+			</Page>
+
+			<!-- Map View -->
+			<Page ux:Name="page2" Background="#abb7b7">
+				<WhileActive Threshold="0.5">
+					<Set indicator.LayoutMaster="page2Tab" />
+				</WhileActive>
+				<!-- <H1Text>Welcome to Page 2</H1Text> -->
+				<NativeViewHost Width="100%" Height="100%" Margin="0" Padding="0">
+					<MapView ux:Name="myMapView" Latitude="34.04" Longitude="-118.37" Zoom="11">
+						
+						<MapMarker 
+							Latitude="34.07239" 
+							Longitude="-118.3672" 
+							Label="Verve Coffee Roasters"
+						/>
+						<MapMarker 
+							Latitude="34.0388" 
+							Longitude="-118.23605" 
+							Label="The Wheelhouse"
+						/>
+					</MapView>
+				</NativeViewHost>
+				<JavaScript>
+					myMapView.setMarkers([
+						{ latitude: 34.01680, longitude: -118.49709, label: "The Refinery" },
+						{ latitude: 34.02818, longitude: -118.47837, label: "Good Boy Bob" },
+						{ latitude: 34.0614, longitude: -118.3109858, label: "Document Coffee Bar" },
+						{ latitude: 34.07239, longitude: -118.3672, label: "Verve Coffee Roasters" },
+						{ latitude: 34.0388, longitude: -118.23605, label: "The Wheelhouse" }
+					]);
+				</JavaScript>
+			</Page>
+			
+			<!-- About Page -->
+			<Page ux:Name="page3" Background="#f2f1ef" Padding="20,20">
+				<WhileActive Threshold="0.5">
+					<Set indicator.LayoutMaster="page3Tab" />
+				</WhileActive>
+				
+				<StackPanel Alignment="TopLeft" Height="80" Opacity="1">
+					<H1Text>Some about page header text</H1Text>
+					<ParagraphText>
+						Paragraph text. Aliqua do culpa, nulla in fugiat strip steak spare ribs leberkas cillum. Short loin veniam alcatra, nisi minim officia shank turducken ea chicken. Esse reprehenderit commodo venison short ribs. Jowl doner ad, shank turkey drumstick pork loin pork belly nisi prosciutto irure chuck cupidatat. Bacon in chicken, do officia anim qui voluptate venison pancetta pork brisket.
+					</ParagraphText>
+				</StackPanel>
+			</Page>
+		</PageControl>
+
+	</DockPanel>
+</App>

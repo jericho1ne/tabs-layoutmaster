@@ -1,0 +1,14 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Maps"
+  ],
+  "Includes": [
+    "*",
+    "Roboto-Medium.ttf:File",
+    "Montserrat-UltraLight.otf:File",
+    "Montserrat-Light.otf:File",
+    "Montserrat-Regular.otf:File"
+  ]
+}
