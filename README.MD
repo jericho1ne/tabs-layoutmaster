@@ -12,5 +12,5 @@ Most brute force to reset your whole environment is to run the following (make i
 fuse kill-all && uno clean && fuse preview
 ```
 
-![Tabbed app example](/_screenshots/screen-01.png){:height="250px"}
-![MapView](/_screenshots/screen-02.png){:height="250px"}
+![Tabbed app example](/_screenshots/screen-01.png)
+![MapView](/_screenshots/screen-02.png)
